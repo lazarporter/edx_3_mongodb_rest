@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "e8d3b681-5c45-475f-95a2-225e3aa8460f",
+		"name": "Module 3 RESTCRUD Sample",
+		"description": "commants to test the tutorial from Module 3 of Edx nodeJS course.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /accounts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Nassan Paul\",\n\t\"grade\": \"B\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/accounts",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts"
+					]
+				},
+				"description": "Post"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /accounts/:id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ObjectID\":\"5bfb2d8836bb1544f86ea08b\",\n\t\"name\":\"Nathaniel Mahalli\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/accounts/5bfb47c0248250452c15f73b",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts",
+						"5bfb47c0248250452c15f73b"
+					]
+				},
+				"description": "make sure to replace :id with a document _id"
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /accounts/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/accounts/5bfb47c0248250452c15f73b",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts",
+						"5bfb47c0248250452c15f73b"
+					]
+				},
+				"description": "make sure to replace :id with a document _id"
+			},
+			"response": []
+		}
+	]
+}
