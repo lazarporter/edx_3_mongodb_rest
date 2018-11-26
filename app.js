@@ -22,7 +22,7 @@ mongodb.connect(url, { useNewUrlParser: true }, (error, client) => {
     console.log(`Connected to mongoDB`)
     const collection = client.db('edx-course-db').collection('accounts')
 
-    app.get('/accounts', (req, res) => {
+    app.get('/accounts', (req, res, next) => {
         collection.find({})
             .sort({ _id: -1 })
             .toArray((error, accounts) => {
@@ -31,18 +31,18 @@ mongodb.connect(url, { useNewUrlParser: true }, (error, client) => {
             })
     })
 
-    app.post('/accounts', (req, res) => {
+    app.post('/accounts', (req, res, next) => {
         collection.insertOne(req.body, (error, results) => {
-            if (error) process.exit(1)
+            if (error) return next(error)
             res.send(`inserted document with ID of ${results.insertedId}`)
         })
     })
-    app.put('/accounts/:id', (req, res) => {
+    app.put('/accounts/:id', (req, res, next) => {
         collection.findOneAndUpdate({ _id: mongodb.ObjectId(req.params.id) },
             { $set: { "name": req.body.name } },
             //{ returnNewDocument: true },
             (error, result) => {
-                if (error) process.exit(1)
+                if (error) return next(error)
                 
                 //This is sending back the original, PREedit document - what's going wrong here?
                 res.send(result)
@@ -50,13 +50,13 @@ mongodb.connect(url, { useNewUrlParser: true }, (error, client) => {
             })
     })
 
-    app.delete('/accounts/:id', (req, res) => {
+    app.delete('/accounts/:id', (req, res, next) => {
         collection.deleteOne({ _id: mongodb.ObjectId(req.params.id) },
         (error, result) =>{
-            if (error) process.exit(1)
+            if (error) return next(error)
             res.send(`Delete ${result.deletedCount} document(s)`)
         })
     })
-
+    app.use(errorhandler())
     app.listen(3000)
 })
